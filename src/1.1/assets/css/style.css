@@ -69,7 +69,6 @@
 }
 
 .line__title {
-    font-style: normal;
     font-weight: 600;
     line-height: normal;
     margin-left: 10px;
@@ -120,7 +119,6 @@
     top: 81px;
     left: 7px;
     font-size: 12px;
-    font-style: normal;
     font-weight: 400;
     line-height: normal;
 }
@@ -129,7 +127,6 @@
     width: 132.349px;
     height: 13.125px;
     font-size: 8px;
-    font-style: normal;
     font-weight: 400;
     line-height: normal;
 }
@@ -260,4 +257,94 @@
     color: #FFF;
     font-size: 14px;
     font-weight: 600;
+}
+
+/* filter */
+
+.filter-grid {
+    margin-top: 15px;
+    display: grid; 
+    grid-column-gap: 10px;
+    grid-row-gap: 12px;
+}
+
+.price-filter {
+    width: 163px;
+    grid-area: auto auto;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+} 
+
+.price-filter__range {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.price-filter__range__item {
+    background: #D6D6D6;
+    width: 106px;
+    height: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 6px;
+    font-weight: 500;
+    border-radius: 10px;
+}
+
+.price-filter__range__item__text {
+    border-right: #000 solid 0.5px;
+    padding: 3px 4px;
+}
+
+.price-filter__range__item__input {
+    background: #D6D6D6;
+    border-radius: 0 10px 10px 0;
+    width: 100%;
+    height: 100%;
+    text-indent: 4px;
+}
+
+.more-less {
+    width: 122px;
+    grid-area: auto auto;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.more-less__btn {
+    width: 110px;
+    height: 16px;
+    font-size: 8px;
+    font-weight: 500;
+    line-height: normal;
+    border-radius: 10px;
+    background: #D6D6D6;
+}
+
+.brand-filter {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+} 
+
+.size-filter {
+    grid-column-start: 1;
+    grid-column-end: 3;
+} 
+
+.price-filter,
+.more-less,
+.brand-filter,
+.size-filter {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 6px;
+    background: #FFF;
+    border-radius: 10px;
 }
