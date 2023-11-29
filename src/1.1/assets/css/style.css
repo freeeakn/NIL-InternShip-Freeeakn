@@ -33,7 +33,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-top: 7px;
+    padding-top: 7px;
 }
 
 .line {
@@ -325,19 +325,6 @@
     background: #D6D6D6;
 }
 
-.brand-filter {
-    grid-column-start: 1;
-    grid-column-end: 3;
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
-} 
-
-.size-filter {
-    grid-column-start: 1;
-    grid-column-end: 3;
-} 
-
 .price-filter,
 .more-less,
 .brand-filter,
@@ -347,4 +334,35 @@
     padding: 6px;
     background: #FFF;
     border-radius: 10px;
+}
+
+.brand-filter,
+.size-filter {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    padding: 6px 0 6px 6px;
+}
+
+.horizontal-scroll {
+    width: 300px;
+    overflow-x: scroll;
+    white-space:nowrap;
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.horizontal-scroll__item {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 3px;
+    width: 60px;
+    height: 20px;
+    border-radius: 10px;
+    background: #D6D6D6;
 }
