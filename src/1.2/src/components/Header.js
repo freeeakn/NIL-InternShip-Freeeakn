@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './style.css';
 
 function Header() {
@@ -15,8 +16,10 @@ function Header() {
               <div id="profile-text">Артемий Журавлёв</div>
             </div>
             <div id="header-links">
-              <a id="header-functional-link" href="/">Функционал</a>
-              <a id="header-help-link" href="/">Помощь</a>
+              <Link id="header-functional-link" to="/cabinet">Личный кабинет</Link>
+              <Link id="header-help-link" to="/settings">Настройки</Link>
+              <Link id="header-functional-link" to="/">Функционал</Link>
+              <Link id="header-help-link" to="/">Помощь</Link>
             </div>
             <div id="logo-with-dot-container">
               <span className="initial-letter">A</span>

@@ -36,7 +36,7 @@
   align-items: center;
 }
 
-#logo {
+#logo, #logo2, #logo3 {
   margin-right: 20px;
 }
 
@@ -911,3 +911,124 @@ html {
 
   
   /*  */
+
+.rectangle1{
+	height: 30px;
+	width: 180px;
+}
+
+.square1{
+	height: 300px;
+	margin-left: -30px;
+}
+
+.square2{
+	height: 500px;
+	width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.not-found-page-main-block{
+	margin-top: 20px;
+}
+
+#notFoundPage_returnButton{
+	font-size: 20px;
+}
+
+#notFoundPage_returnButtonImage{
+	height: 30px;
+}
+
+.notFoundPage-returnSvg{
+	vertical-align: middle;
+	margin-right: 10px;
+}
+
+#span{
+	font-size: 20px;
+	color: black;
+	font-weight: 600;
+	position: relative;
+  	bottom: 1px;
+}
+
+.content-container-2 {
+	display: flex; /* Включает флексбокс */
+	flex-direction: column; /* Элементы внутри контейнера будут располагаться в столбик */
+}
+
+#notFoundPage-h1-404{
+	margin-top: 100px;
+	font-size: 150px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 500;
+	display: block;
+	margin: 0 auto;
+	background: linear-gradient(102.75deg, #FD4766 10.61%, #DB468C 49.88%, #BA46B3 91.69%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	display: inline-block; /* Это нужно, чтобы background-clip работал */
+}
+
+.notFoundPage-p-message{
+	font-size: 20px;
+	display: block;
+	margin: 0 auto;	
+	color: #DB468C;
+}
+
+#notFoundPage-robotImage{
+	display: block;
+	margin: 0 auto;	
+	margin-top: 30px;
+	height: 250px;	
+}
+
+/* .notFoundPageWrapper{
+	margin-bottom: -30px;
+}
+
+main{
+	margin-bottom: -30px;
+	padding-bottom: -30px;
+} */
+
+
+.wrapper.notFoundPageWrapper {
+    min-height: 100vh; /* Высота контейнера равна высоте окна просмотра */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; Выравнивание содержимого по центру по вертикали */
+}
+
+/* Убедимся, что отрицательные отступы исправлены */
+.notFoundPageWrapper, .not-found-page-main-block {
+    /* margin: 0; */
+    padding: 0;
+}

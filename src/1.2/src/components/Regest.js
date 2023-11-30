@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 import { useState } from "react";
 import "./Regest.css"
 
@@ -8,24 +9,17 @@ function Regest() {
     const [email, setEmail] = useState('');
     const navigate = useNavigate();
 
-    const handleReg = () => {
-        navigate('/cabinet');
-        // fetch('./check_loginData.php', {
-        //   method: 'POST',
-        //   body: JSON.stringify({ login, email }),
-        // })
-        //   .then(response => response.json())
-        //   .then(data => {
-        //     if (data.status === 'correct') {
-        //       window.location.href = "/cabinet";
-        //     } else {
-        //       console.error('Ошибка входа')
-        //     }
-        //   })
-        //   .catch(error => {
-        //     console.error('Ошибка при проверке уникальности:', error);
-        //   });
-    };
+    const handleRegistration = () => {
+        // axios
+        // if response positive, push to cabinet
+        if (email && login) {
+            const newExpiryTime = new Date(new Date().getTime() + 1 * 60 * 1000); // 1 час
+            Cookies.set('session', 'active');
+            Cookies.set('session_expiry_time', newExpiryTime.toISOString());
+            console.log('Новая сессия открыта на 1 час');
+            navigate('/cabinet');
+        }
+    }
 
     return (
         <div className="d1">
@@ -44,39 +38,39 @@ function Regest() {
                 <div className="d3_2">
                     <form className="f3_1">
                         <input
-                            type="text"
-                            data-t="field:input-login"
-                            dir="ltr" aria-invalid="false"
-                            autocorrect="off"
-                            autocapitalize="off"
-                            autocomplete="username"
-                            class="in3_1"
-                            id="passp-field-login"
-                            name="login"
-                            placeholder="Имя пользователя"
-                            onChange={e => setLogin(e.target.value)}
-                            value={login} />
+                        type="text"
+                        data-t="field:input-login"
+                        dir="ltr"
+                        aria-invalid="false"
+                        autocorrect="off"
+                        autocapitalize="off"
+                        autocomplete="username"
+                        class="in3_1"
+                        id="passp-field-login" 
+                        name="login"
+                        placeholder="Имя пользователя"
+                        onChange={e => setLogin(e.target.value)}
+                        value={login}/>
                     </form>
                     <form className="f3_2">
                         <input
-                            type="text"
-                            data-t="field:input-login"
-                            dir="ltr"
-                            aria-invalid="false"
-                            autocorrect="off"
-                            autocapitalize="off"
-                            autocomplete="username"
-                            class="in3_1"
-                            id="passp-field-login"
-                            name="login"
-                            placeholder="email"
-                            onChange={e => setEmail(e.target.value)}
-                            value={email}/>
+                        type="email"
+                        data-t="field:input-login"
+                        dir="ltr"
+                        aria-invalid="false"
+                        autocorrect="off"
+                        autocapitalize="off"
+                        autocomplete="username"
+                        class="in3_1"
+                        id="passp-field-login"
+                        name="login"
+                        placeholder="email"
+                        onChange={e => setEmail(e.target.value)}
+                        value={email}/>
                     </form>
                     <button
-                        onClick={handleReg}
-                        type="button"
-                        className="b3">
+                    onClick={handleRegistration}
+                    type="button" className="b3">
                         <p className="p2">Зарегистрироваться</p>
                     </button>
                     <p className="p3_1">Уже имеете аккаунт?
