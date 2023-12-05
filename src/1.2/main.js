@@ -85,22 +85,36 @@ app.get('/filter', (req, res) => {
 });
 
 app.get('/item', async (req, res) => {
+
     const name = req.query.name;
     const model = req.query.model;
+    
+
     const {data} = await googleSheets.spreadsheets.values.get({
         auth,
         spreadsheetId,
         range: 'Лист1',
-        params: {
-            filter: `=REGEXMATCH(A1, "^${name}") AND REGEXMATCH(B1, "^${model}"))`
-        }
     });
+
+    const findArray = (arr) => {
+        for (let i = 0; i < arr.length; i++)
+            if (arr[i][0] === name && arr[i][1] === model)
+                return arr[i];
+        return null;
+    }
+      
+    const result = findArray(data.values);
+
+    let temp = result[4].split('/')[5];
+    result[4] = 'http://drive.google.com/uc?export=view&id=' + temp;
+
+
     res.render('Item', {
         name: name,
         model: model,
-        size: data[2],
-        price: data[3],
-        img: data[4],
+        size: result[2],
+        price: result[3],
+        img: result[4],
     });
 });
 
