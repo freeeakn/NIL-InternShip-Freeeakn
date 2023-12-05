@@ -96,11 +96,8 @@ app.get('/item', async (req, res) => {
         range: 'Лист1',
     });
 
-    const findArray = (arr) => {
-        for (let i = 0; i < arr.length; i++)
-            if (arr[i][0] === name && arr[i][1] === model)
-                return arr[i];
-        return null;
+    const findArray = (products) => {
+        return products.find(product => product[0] === name && product[1] === model);
     }
       
     const result = findArray(data.values);
