@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная</title>
+    <link rel="stylesheet" href="src/css/style.css">
+</head>
+<body
+    class="bg-gray">
+    <div
+        class="container">
+        <header
+            class="header">
+            <div
+                class="line">
+                <form
+                    class="line__search">
+                    <div
+                        id="btn-to-find"
+                        onclick="FindOnPage('text-to-find')"
+                        class="line__search__loupe">
+                        <img src="src/img/loupe.svg" alt="loupe">
+                    </div>
+                    <input
+                    placeholder="Поиск"
+                    class="line__search__input"
+                    id="text-to-find"
+                    value=""
+                    type="text">
+                </form>
+                <div class="line__icon">
+                    <img src="src/img/cart.svg" alt="">
+                </div>
+            </div>
+            <div
+                class="line">
+                <div class="line__title">
+                    <h1>Прайс</h1>
+                </div>
+                <a
+                    href="/filter"
+                    class="line__icon">
+                    <img src="src/img/filter.svg" alt="">
+                </a>
+            </div>
+        </header>
+
+        <main
+            class="main-grid">
+            <% data.forEach((el) => { %>
+            <div
+                class="main-grid__item">
+                <a
+                    href="<%= `http://localhost:5173/item?name=${el[0]}&model=${el[1]}` %>"
+                    class="main-grid__item__image">
+                    <img src="<%= encodeURI(el[4]) %>" alt="item-picture">
+                </a>
+                <div class="main-grid__item-bottom">
+                    <div
+                        class="main-grid__item__price">
+                        <h2><%= el[3] %> ₽</h2>
+                    </div>
+                    <div
+                        class="main-grid__item__name">
+                        <h3><%= el[0] %></h3>
+                    </div>
+                    <button
+                        class="main-grid__item__btn"
+                        type="button">Купить</button>
+                </div>
+            </div>
+            <% }); %>
+            
+        </main>
+    </div>
+
+    <script>
+        let input, search, pr, result, result_arr, locale_HTML, result_store;
+        
+        locale_HTML = document.body.innerHTML;
+
+        function FindOnPage(name) {
+
+            input = document.getElementById(name).value;
+
+            if(input.length < 3 ) {
+                alert('Для поиска вы должны ввести три или более символов');
+                function FindOnPageBack() { document.body.innerHTML = locale_HTML; }
+            }
+                
+            if(input.length >= 3) {
+                function FindOnPageGo() {
+                    search = '/'+input+'/g';
+                    pr = document.body.innerHTML;
+                    result = pr.match(/>(.*?)</g);
+                    result_arr = [];
+
+                    for(var i=0; i<result.length;i++) {
+                        result_arr[i] = result[i].replace(eval(search), '<span style="background-color:yellow;">'+input+'</span>');
+                    }
+                    for(var i=0; i<result.length;i++) {
+                        pr=pr.replace(result[i],result_arr[i])
+                    }
+                    document.body.innerHTML = pr;
+                }
+            }
+            function FindOnPageBack() { document.body.innerHTML = locale_HTML; }
+            FindOnPageBack();
+            FindOnPageGo();
+        }
+    </script>
+</body>
+</html>

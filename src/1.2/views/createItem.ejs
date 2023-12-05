@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Item</title>
+    <link rel="stylesheet" href="src/css/style.css">
+</head>
+<body>
+    <div
+    class="container">
+    <header
+        class="default-header bg-gray">
+        <h1>Создание нового элемента</h1>
+    </header>
+        <form
+            class="input-list">
+            <label for="name">Название:
+                <input
+                required
+                type="text" name="name" id="name">
+            </label>
+            <label for="price">Цена:
+                <input
+                required
+                type="text" name="price"id="price">
+            </label>
+            <label for="size">Размер:
+                <input
+                required
+                type="text" name="size"id="size">
+            </label>
+            <label for="uploadfile">Фотография:
+                <input
+                required
+                name="uploadfile" id="uploadfile" type="file" accept="image/*"> 
+            </label>
+            <div class="center-image">
+                <img src="" alt="uploadfile" id="img">
+            </div>
+            <button type="submit">Отправить</button>
+        </form>
+    </div>
+
+    <script>
+        const url = '';
+        let file = document.getElementById('uploadfile');
+        let img = document.getElementById('img');
+
+        file.addEventListener('change', () => {
+            let fr = new FileReader();
+            fr.addEventListener('loadend', () => {
+                let res = fr.result;
+                img.src = res;
+            });
+            fr.readAsDataURL(file.files[0]);
+        })
+
+        const formElem = document.querySelector('form');
+
+        formElem.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            await fetch('/create_item', {
+                method: 'POST',
+                body: new FormData(formElem),
+            })
+        });
+    </script>
+</body>
+</html>

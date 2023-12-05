@@ -4,18 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Товар</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="src/css/style.css">
 </head>
 <body
     class="bg-gray">
     <header
         class="bg-gray item-header">
-        <h1>Название</h1>
+        <span onclick=" window.location.href = '/'">
+        назад
+        </span>
+        <h1><%= name %> </h1>
     </header>
 
     <div
         class="item-image">
-        <img src="" alt="ItemPhoto">
+        <img src="<%= 'http://drive.google.com/uc?export=view&id=' + img %>" alt="ItemPhoto">
     </div>
 
     <div
@@ -26,8 +29,8 @@
                 class="item-desc__item">
                 <div
                     class="item-desc__item__price">
-                    <h2>250 ₽</h2>
-                    <img src="assets/img/pin.svg" alt="pin">
+                    <h2><%= price %> ₽</h2>
+                    <img src="src/img/pin.svg" alt="pin">
                 </div>
 
                 <div
@@ -40,15 +43,7 @@
                         class="item-desc__item__size__items">
                         <div
                             class="item-desc__item__size__items__box">
-                            <p>37</p>
-                        </div>
-                        <div
-                            class="item-desc__item__size__items__box">
-                            <p>40</p>
-                        </div>
-                        <div
-                            class="item-desc__item__size__items__box">
-                            <p>46</p>
+                            <p><%= size %></p>
                         </div>
                     </div>
                 </div>
@@ -59,6 +54,7 @@
                         Описание
                     </h2>
                     <p>
+                        <%= model %>
                     </p>
                 </div>
             </div>
