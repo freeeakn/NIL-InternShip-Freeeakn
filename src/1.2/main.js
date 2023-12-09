@@ -34,6 +34,7 @@ app.set('view engine', 'ejs')
 
 
 app.get('/', async (req, res) => {
+    
     const {data} = await googleSheets.spreadsheets.values.get({
         auth,
         spreadsheetId,
@@ -42,10 +43,39 @@ app.get('/', async (req, res) => {
     
     for(let i = 0 ; i < data.values.length; i++) {
         let temp = data.values[i][4].split('/')[5];
-        data.values[i][4] = 'http://drive.google.com/uc?export=view&id=' + temp;
+        data.values[i][4] = temp;
     }
 
     res.render('index', {data: data.values});
+});
+
+app.post('/', async (req, res) => {
+
+    const { textFind } = req.body;
+    
+    const {data} = await googleSheets.spreadsheets.values.get({
+        auth,
+        spreadsheetId,
+        range: 'Лист1',
+    });
+    
+    data.values.forEach(item => {
+        item[4] = item[4].split('/')[5];
+    })
+
+    const filterArray = (arr, params) => {
+        if (params != '') {
+            return arr.filter(function(subArr) {
+                return subArr.includes(params);
+            });
+        } else {
+            return arr;
+        }
+    }
+    
+    const filteredArray = filterArray(data.values, textFind);
+
+    res.render('index', {data: filteredArray});
 });
 
 app.get('/create_item', (req, res) => {
@@ -88,30 +118,33 @@ app.get('/item', async (req, res) => {
 
     const name = req.query.name;
     const model = req.query.model;
+    const size = req.query.size;
+    const price = req.query.price;
+    const img = req.query.img;
     
 
-    const {data} = await googleSheets.spreadsheets.values.get({
-        auth,
-        spreadsheetId,
-        range: 'Лист1',
-    });
+    // const {data} = await googleSheets.spreadsheets.values.get({
+    //     auth,
+    //     spreadsheetId,
+    //     range: 'Лист1',
+    // });
 
-    const findArray = (products) => {
-        return products.find(product => product[0] === name && product[1] === model);
-    }
+    // const findArray = (products) => {
+    //     return products.find(product => product[0] === name && product[1] === model);
+    // }
       
-    const result = findArray(data.values);
+    // const result = findArray(data.values);
 
-    let temp = result[4].split('/')[5];
-    result[4] = 'http://drive.google.com/uc?export=view&id=' + temp;
+    // let temp = result[4].split('/')[5];
+    // result[4] = 'http://drive.google.com/uc?export=view&id=' + temp;
 
 
     res.render('Item', {
         name: name,
         model: model,
-        size: result[2],
-        price: result[3],
-        img: result[4],
+        size: size,
+        price: price,
+        img: img,
     });
 });
 
