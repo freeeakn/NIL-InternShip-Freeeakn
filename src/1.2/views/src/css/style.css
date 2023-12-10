@@ -87,14 +87,6 @@
     align-items: center;
 }
 
-.smart-basket__min {
-    background: rgba(0, 0, 0, 0);
-}
-
-.smart-basket__min-count {
-    display: none;
-}
-
 /* MAIN */
 
 .main-grid {
@@ -440,6 +432,18 @@
 
 /* Cart */
 
+.smart-basket {
+    background: #EDEDED;
+}
+
+.smart-basket__min {
+    background: rgba(0, 0, 0, 0);
+}
+
+.smart-basket__min-count {
+    display: none;
+}
+
 .smart-basket__wrapper span, p{
     font-family: 'Roboto', sans-serif;
     text-align: start;
@@ -607,4 +611,101 @@
 
 .main-grid__item-bottom .product__quantity {
     display: none;
+}
+
+.smart-basket__quantity-common {
+    font-family: 'Roboto', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    margin-top: 5px;
+}
+
+.smart-basket__price-common,
+.smart-basket__total-cost,
+.smart-basket__agreement-wrapper {
+    font-family: 'Roboto', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.smart-basket__total-cost{
+    background: #EDEDED;
+    text-align: left;
+    width: 50px;
+    max-width: 120px;
+}
+
+.smart-basket__result-common {
+    padding: 0;
+    border: 0;
+}
+
+.smart-basket__user-form * {
+    color: #000;
+    font-family: 'Roboto', sans-serif;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 100;
+}
+
+.smart-basket__user-form {
+    padding: 0;
+}
+
+.smart-basket__user-info {
+    padding: 15px 0 20px 0;
+}
+
+.smart-basket__input-wrapper input,
+.smart-basket__agreement-wrapper {
+    border-radius: 10px;
+    border: 3px solid #FFF;
+    height: 40px;
+    background: #FFF;
+    padding: 0 10px;
+}
+
+.smart-basket__input-wrapper {
+    padding: 0;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.smart-basket__input-agreement:checked+.smart-basket__label-agreement:before {
+    background: #A7FB8A;
+}
+
+.smart-basket__input-agreement:checked+.smart-basket__label-agreement:after {
+    background: #00AB07;
+}
+
+.smart-basket__footer * {
+    font-family: 'Roboto', sans-serif;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.smart-basket__close-form,
+.smart-basket__send-form {
+    width: 145px;
+    height: 40px;
+    border-radius: 10px;
+    border: 3px solid #FFF;
+    background: #FFF;
+    padding: 0;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+a.smart-basket__link-agreement {
+    color: #000;
+
+    font-family: 'Roboto' Flex;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 100;
+    line-height: normal;
 }
