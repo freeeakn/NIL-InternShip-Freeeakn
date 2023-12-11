@@ -42,8 +42,8 @@ app.get('/', async (req, res) => {
     });
     
     for(let i = 0 ; i < data.values.length; i++) {
-        let temp = data.values[i][4].split('/')[5];
-        data.values[i][4] = temp;
+        let temp = data.values[i][5].split('/')[5];
+        data.values[i][5] = temp;
     }
 
     res.render('index', {data: data.values});
@@ -60,7 +60,7 @@ app.post('/', async (req, res) => {
     });
     
     data.values.forEach(item => {
-        item[4] = item[4].split('/')[5];
+        item[5] = item[5].split('/')[5];
     })
 
     const filterArray = (arr, params) => {
@@ -131,31 +131,14 @@ app.get('/item', async (req, res) => {
 
     const name = req.query.name;
     const model = req.query.model;
-    const size = req.query.size;
+    const power = req.query.power;
     const price = req.query.price;
     const img = req.query.img;
-    
-
-    // const {data} = await googleSheets.spreadsheets.values.get({
-    //     auth,
-    //     spreadsheetId,
-    //     range: 'Лист1',
-    // });
-
-    // const findArray = (products) => {
-    //     return products.find(product => product[0] === name && product[1] === model);
-    // }
-      
-    // const result = findArray(data.values);
-
-    // let temp = result[4].split('/')[5];
-    // result[4] = 'http://drive.google.com/uc?export=view&id=' + temp;
-
 
     res.render('Item', {
         name: name,
         model: model,
-        size: size,
+        power: power,
         price: price,
         img: img,
     });
