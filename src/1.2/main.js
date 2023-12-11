@@ -110,8 +110,21 @@ app.post('/create_item', upload.any(), async (req, res) => {
     res.sendStatus(200);
 });
 
-app.get('/filter', (req, res) => {
-    res.render('Filter');
+app.get('/filter', async (req, res) => {
+    const {data} = await googleSheets.spreadsheets.values.get({
+        auth,
+        spreadsheetId,
+        range: 'Лист1',
+    });
+    let type = [];
+    let power = [];
+    let taste = [];
+    data.values.forEach((value) => {
+        taste.push(value[1]);
+        type.push(value[2]);
+        power.push(value[3]);
+    });
+    res.render('Filter', {type: type, power: power, taste: taste});
 });
 
 app.get('/item', async (req, res) => {

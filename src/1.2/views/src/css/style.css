@@ -304,7 +304,7 @@
 }
 
 .price-filter__range__item {
-    background: #D6D6D6;
+    background: #EDEDED;
     width: 106px;
     height: 16px;
     display: flex;
@@ -315,13 +315,16 @@
     border-radius: 10px;
 }
 
-.price-filter__range__item__text {
+.price-filter__range__item__text p {
     border-right: #000 solid 0.5px;
     padding: 3px 4px;
+    font-size: 6px;
+    font-style: normal;
+    font-weight: 500;
 }
 
 .price-filter__range__item__input {
-    background: #D6D6D6;
+    background: #EDEDED;
     border-radius: 0 10px 10px 0;
     width: 100%;
     height: 100%;
@@ -346,7 +349,7 @@
     font-weight: 500;
     line-height: normal;
     border-radius: 10px;
-    background: #D6D6D6;
+    background: #EDEDED;
 }
 
 .price-filter,
@@ -364,6 +367,7 @@
 
 .brand-filter,
 .size-filter {
+    width: 300px;
     grid-column-start: 1;
     grid-column-end: 3;
     display: flex;
@@ -373,7 +377,8 @@
 }
 
 .horizontal-scroll {
-    width: 300px;
+    border-radius: 0 0 3px 0;
+    width: 294px;
     overflow-x: scroll;
     white-space:nowrap;
 }
@@ -390,7 +395,8 @@
     width: 60px;
     height: 20px;
     border-radius: 10px;
-    background: #D6D6D6;
+    background: #FFF;
+    border: #000 1px solid;
 }
 
 /* create Item */

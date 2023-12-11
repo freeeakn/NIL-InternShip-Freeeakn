@@ -58,43 +58,76 @@
             <div
                 class="brand-filter">
                 <div class="line">
-                    Бренд
+                    Линейка
                 </div>
                 <div class="horizontal-scroll">
-                    <div class="horizontal-scroll__item"></div>
-                    <div class="horizontal-scroll__item"></div>
-                    <div class="horizontal-scroll__item"></div>
-                    <div class="horizontal-scroll__item"></div>
-                    <div class="horizontal-scroll__item"></div>
-                    <div class="horizontal-scroll__item"></div>
-                    <div class="horizontal-scroll__item"></div>
+                    <% type.forEach((el) => { %>
+                        <div class="horizontal-scroll__item"><%= el %></div>
+                    <% }); %>
+                </div>
+            </div>
+            <div
+                class="brand-filter">
+                <div class="line">
+                    Вкус
+                </div>
+                <div class="horizontal-scroll">
+                    <% taste.forEach((el) => { %>
+                        <div class="horizontal-scroll__item"><%= el %></div>
+                    <% }); %>
                 </div>
             </div>
             <div
                 class="size-filter">
                 <div
                     class="item-desc__item__size__title">
-                    <h2>Размер <span>см</span></h2>
+                    <h2>Крепость <span>мг</span></h2>
                 </div>
                 <div class="horizontal-scroll">
-                    <div class="horizontal-scroll__item">23</div>
-                    <div class="horizontal-scroll__item">24</div>
-                    <div class="horizontal-scroll__item">25</div>
-                    <div class="horizontal-scroll__item">26</div>
-                    <div class="horizontal-scroll__item">27</div>
-                    <div class="horizontal-scroll__item">28</div>
-                    <div class="horizontal-scroll__item">29</div>
+                    <% power.forEach((el) => { %>
+                        <div class="horizontal-scroll__item"><%= el %></div>
+                    <% }); %>
                 </div>
             </div>
         </div>
     </div>
     <div
+        style="position: absolute; bottom: 4px; width: 100%;"
         class="submit">
         <div class="container">
             <button
                 class="submit__btn"
-                type="button">Оплатить</button>
+                type="button">Применить</button>
         </div>
     </div>
+    <script>
+        const moreLessBtn = document.getElementsByClassName('more-less__btn');
+        const item = document.getElementsByClassName('horizontal-scroll__item');
+    
+        let isMoreLess = false;
+        let isItem = false;
+
+        for (let i = 0; i < moreLessBtn.length; i++) {
+            moreLessBtn[i].addEventListener('click', () => {
+                isMoreLess = !isMoreLess;
+                if (isMoreLess) {
+                    moreLessBtn[i].style.backgroundColor = '#D6D6D6';
+                } else {
+                    moreLessBtn[i].style.backgroundColor = '#EDEDED';
+                }
+            });
+        }
+    
+        for (let i = 0; i < item.length; i++) {
+            item[i].addEventListener('click', () => {
+                isItem = !isItem;
+                if (isItem) {
+                    item[i].style.backgroundColor = '#D6D6D6';
+                } else {
+                    item[i].style.backgroundColor = '#FFF';
+                }
+            });
+        }
+    </script>
 </body>
 </html>
