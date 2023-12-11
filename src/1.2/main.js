@@ -32,6 +32,31 @@ app.set('view engine', 'ejs')
     .use(express.urlencoded({ extended: true }))
     .use(express.static(__dirname + '/views'));
 
+const filterArray = (arr, params) => {
+    if (params != '') {
+        return arr.filter(function(subArr) {
+            return subArr.includes(params);
+        });
+    } else {
+        return arr;
+    }
+}
+
+const fromTofilterArray = (arr, from, to) => {
+    if (from || to) {
+        return arr.filter(function(subArr) {
+            if (from && to)
+                return (from <= subArr[4]) && (subArr[4] <= to);
+            else if (from)
+                return from <= subArr[4];
+            else if (to);
+                return subArr[4] <= to;
+        });
+    } else {
+        return arr;
+    }
+}
+
 
 app.get('/', async (req, res) => {
     
@@ -46,7 +71,30 @@ app.get('/', async (req, res) => {
         data.values[i][5] = temp;
     }
 
-    res.render('index', {data: data.values});
+    const filter = req.query.filter;
+    const from = req.query.from;
+    const to = req.query.to;
+    const sort = req.query.sort;
+
+    let filteredArray = data.values;
+    if (filter) {
+        const arr = filter.split(',');
+        filteredArray = [];
+        for (let i = 0 ; i < arr.length - 1; i++) {
+            filteredArray.push(...filterArray(data.values, arr[i]))
+        }
+        console.log(filteredArray);
+    }
+
+    if (from || to)
+        filteredArray = fromTofilterArray(filteredArray, from, to);
+
+    if (sort == 'true')
+        filteredArray = filteredArray.sort((item1, item2) => item1[4] < item2[4] ? 1 : -1);
+    else if (sort == 'false')
+        filteredArray = filteredArray.sort((item1, item2) => item1[4] > item2[4] ? 1 : -1);
+
+    res.render('index', {data: filteredArray});
 });
 
 app.post('/', async (req, res) => {
@@ -62,16 +110,6 @@ app.post('/', async (req, res) => {
     data.values.forEach(item => {
         item[5] = item[5].split('/')[5];
     })
-
-    const filterArray = (arr, params) => {
-        if (params != '') {
-            return arr.filter(function(subArr) {
-                return subArr.includes(params);
-            });
-        } else {
-            return arr;
-        }
-    }
     
     const filteredArray = filterArray(data.values, textFind);
 
@@ -119,12 +157,14 @@ app.get('/filter', async (req, res) => {
     let type = [];
     let power = [];
     let taste = [];
+
     data.values.forEach((value) => {
         taste.push(value[1]);
         type.push(value[2]);
         power.push(value[3]);
     });
-    res.render('Filter', {type: type, power: power, taste: taste});
+
+    res.render('Filter', {type: new Set(type), power: new Set(power), taste: new Set(taste)});
 });
 
 app.get('/item', async (req, res) => {

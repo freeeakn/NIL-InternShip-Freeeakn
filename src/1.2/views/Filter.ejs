@@ -33,7 +33,8 @@
                         <input
                             value=""
                             class="price-filter__range__item__input"
-                            type="number">
+                            id="price_from"
+                            type="text">
                     </div>
                     <div class="price-filter__range__item">
                         <div class="price-filter__range__item__text">
@@ -42,18 +43,15 @@
                         <input
                             value=""
                             class="price-filter__range__item__input"
-                            type="number">
+                            id="price_to"
+                            type="text">
                     </div>
                 </div>
             </div>
             <div
                 class="more-less">
-                <button class="more-less__btn">
-                    По убыванию
-                </button>
-                <button class="more-less__btn">
-                    По возрастанию
-                </button>
+                <button id="Less" class="more-less__btn">По убыванию</button>
+                <button id="More" class="more-less__btn">По возрастанию</button>
             </div>
             <div
                 class="brand-filter">
@@ -100,34 +98,73 @@
                 type="button">Применить</button>
         </div>
     </div>
-    <script>
-        const moreLessBtn = document.getElementsByClassName('more-less__btn');
-        const item = document.getElementsByClassName('horizontal-scroll__item');
     
-        let isMoreLess = false;
-        let isItem = false;
+    <script>
+        const priceTo = document.getElementById('price_to');
+        const priceFrom = document.getElementById('price_from');
+        const item = document.getElementsByClassName('horizontal-scroll__item');
+        const submit = document.getElementsByClassName('submit__btn')[0];
+        const moreBtn = document.getElementById('More');
+        const lessBtn = document.getElementById('Less');
 
-        for (let i = 0; i < moreLessBtn.length; i++) {
-            moreLessBtn[i].addEventListener('click', () => {
-                isMoreLess = !isMoreLess;
-                if (isMoreLess) {
-                    moreLessBtn[i].style.backgroundColor = '#D6D6D6';
-                } else {
-                    moreLessBtn[i].style.backgroundColor = '#EDEDED';
-                }
-            });
-        }
+        let isMore = false;
+        let isLess = false;
+
+        moreBtn.addEventListener('click', () => {
+            moreBtn.style.backgroundColor = '#D6D6D6';
+            lessBtn.style.backgroundColor = '#EDEDED';
+            isMore = true;
+            isLess = !isMore;
+        });
+
+        lessBtn.addEventListener('click', () => {
+            lessBtn.style.backgroundColor = '#D6D6D6';
+            moreBtn.style.backgroundColor = '#EDEDED';
+            isLess = true;
+            isMore = !isLess;
+        });
+
+        let filterList = new Set();
     
         for (let i = 0; i < item.length; i++) {
             item[i].addEventListener('click', () => {
-                isItem = !isItem;
-                if (isItem) {
+                if (!filterList.has(item[i].innerHTML)) {
+                    filterList.add(item[i].innerHTML);
                     item[i].style.backgroundColor = '#D6D6D6';
                 } else {
+                    filterList.delete(item[i].innerHTML);
                     item[i].style.backgroundColor = '#FFF';
                 }
             });
         }
+
+        let to = null;
+
+        priceTo.addEventListener('input', event => {
+            to = event.target.value;
+        });
+
+        let from = null;
+
+        priceFrom.addEventListener('input', event => {
+            from = event.target.value;
+        });
+
+        submit.addEventListener('click', () => {
+            let url = '/?filter=';
+            filterList.forEach(item => {
+                url += `${item},`;
+            });
+
+            if (from || to) 
+                url += `&from=${from}&to=${to}`;
+
+            if (isLess || isMore)
+                url +=`&sort=${isLess}`;
+
+            window.location.href = url;
+        })
+
     </script>
 </body>
 </html>
