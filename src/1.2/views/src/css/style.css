@@ -113,7 +113,7 @@
     border-radius: 1rem 1rem 0 0;
     height: 100px;
     min-height: 100px;
-    width: 100%;
+    width: 145px;
 }
 
 .main-grid__item-bottom {
@@ -194,6 +194,7 @@
     object-fit: cover;
     overflow: hidden;
     width: 100%;
+    min-height: 188px;
     height: 188px;
 }
 

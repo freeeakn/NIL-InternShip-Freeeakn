@@ -13,7 +13,8 @@ const auth = new google.auth.GoogleAuth({
     ],
 });
 
-const spreadsheetId = '1A-Lo9q9eT2gn_QsqmdXmObEbWYb9YfMzW-9392L56BE';
+// const spreadsheetId = '1A-Lo9q9eT2gn_QsqmdXmObEbWYb9YfMzW-9392L56BE';
+const spreadsheetId = '16XBlws6qIfZ7q9yPhqocrywvwZn4XBqYwrRoJLzJp2k';
 
 const client = auth.getClient();
 
@@ -46,11 +47,11 @@ const fromTofilterArray = (arr, from, to) => {
     if (from || to) {
         return arr.filter(function(subArr) {
             if (from && to)
-                return (from <= subArr[4]) && (subArr[4] <= to);
+                return (from <= subArr[9]) && (subArr[9] <= to);
             else if (from)
-                return from <= subArr[4];
+                return from <= subArr[9];
             else if (to);
-                return subArr[4] <= to;
+                return subArr[9] <= to;
         });
     } else {
         return arr;
@@ -63,13 +64,14 @@ app.get('/', async (req, res) => {
     const {data} = await googleSheets.spreadsheets.values.get({
         auth,
         spreadsheetId,
-        range: 'Лист1',
+        range: 'Каталог',
     });
     
-    for(let i = 0 ; i < data.values.length; i++) {
-        let temp = data.values[i][5].split('/')[5];
-        data.values[i][5] = temp;
-    }
+    // for(let i = 0 ; i < data.values.length; i++) {
+    //     let temp = data.values[i][5].split('/')[5];
+    //     data.values[i][5] = temp;
+    // }
+    data.values.splice(0, 2);
 
     const filter = req.query.filter;
     const from = req.query.from;
@@ -83,16 +85,16 @@ app.get('/', async (req, res) => {
         for (let i = 0 ; i < arr.length - 1; i++) {
             filteredArray.push(...filterArray(data.values, arr[i]))
         }
-        console.log(filteredArray);
+        // console.log(filteredArray);
     }
 
     if (from || to)
         filteredArray = fromTofilterArray(filteredArray, from, to);
 
     if (sort == 'true')
-        filteredArray = filteredArray.sort((item1, item2) => item1[4] < item2[4] ? 1 : -1);
+        filteredArray = filteredArray.sort((item1, item2) => item1[9] < item2[9] ? 1 : -1);
     else if (sort == 'false')
-        filteredArray = filteredArray.sort((item1, item2) => item1[4] > item2[4] ? 1 : -1);
+        filteredArray = filteredArray.sort((item1, item2) => item1[9] > item2[9] ? 1 : -1);
 
     res.render('index', {data: filteredArray});
 });
@@ -107,9 +109,9 @@ app.post('/', async (req, res) => {
         range: 'Лист1',
     });
     
-    data.values.forEach(item => {
-        item[5] = item[5].split('/')[5];
-    })
+    // data.values.forEach(item => {
+    //     item[5] = item[5].split('/')[5];
+    // })
     
     const filteredArray = filterArray(data.values, textFind);
 
@@ -152,16 +154,18 @@ app.get('/filter', async (req, res) => {
     const {data} = await googleSheets.spreadsheets.values.get({
         auth,
         spreadsheetId,
-        range: 'Лист1',
+        range: 'Каталог',
     });
     let type = [];
     let power = [];
     let taste = [];
 
+    data.values.splice(0, 2);
+
     data.values.forEach((value) => {
-        taste.push(value[1]);
+        taste.push(value[3]);
         type.push(value[2]);
-        power.push(value[3]);
+        power.push(value[6]);
     });
 
     res.render('Filter', {type: new Set(type), power: new Set(power), taste: new Set(taste)});

@@ -56,15 +56,15 @@
             <div
                 class="main-grid__item">
                 <a
-                    href="<%= `http://localhost:5173/item?name=${el[0]}&model=${el[2]}&power=${el[3]}&price=${el[4]}&img=${el[5]}` %>"
+                    href="<%= `http://localhost:5173/item?name=${el[0]}&model=${el[2]}&power=${el[6]}&price=${el[9]}&img=${el[12]}` %>"
                     class="main-grid__item__image">
-                    <img src="http://drive.google.com/uc?export=view&id=<%= el[5] %>" alt="item-picture">
+                    <img src="<%= el[12] %>" alt="item-picture">
                 </a>
                 <div class="main-grid__item-bottom">
                     <div class="product__quantity"></div>
                     <div
                         class="main-grid__item__price">
-                        <h2><%= el[4] %> ₽</h2>
+                        <h2><%= el[9] %> ₽</h2>
                     </div>
                     <div
                         class="main-grid__item__name">
@@ -73,9 +73,9 @@
                     <div class="main-grid__item__btn"
                     data-sb-id-or-vendor-code="<%= el[3] %>"
                     data-sb-product-name="<%= el[0] %>"
-                    data-sb-product-price="<%=el[4]%>"
+                    data-sb-product-price="<%=el[9]%>"
                     data-sb-product-quantity="1"
-                    data-sb-product-img="http://drive.google.com/uc?export=view&id=<%= el[5] %>">Купить</div>
+                    data-sb-product-img="<%= el[12] %>">Купить</div>
                 </div>
             </div>
             <% }); %>
