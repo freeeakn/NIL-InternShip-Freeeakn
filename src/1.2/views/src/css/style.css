@@ -291,7 +291,7 @@
 }
 
 .price-filter {
-    width: 163px;
+    /* width: 163px; */
     grid-area: auto auto;
     display: flex;
     align-items: center;
@@ -306,7 +306,7 @@
 
 .price-filter__range__item {
     background: #EDEDED;
-    width: 106px;
+    /* width: 106px; */
     height: 16px;
     display: flex;
     justify-content: space-between;
@@ -333,7 +333,7 @@
 }
 
 .more-less {
-    width: 122px;
+    /* width: 122px; */
     grid-area: auto auto;
     display: flex;
     flex-direction: column;
@@ -368,7 +368,6 @@
 
 .brand-filter,
 .size-filter {
-    width: 300px;
     grid-column-start: 1;
     grid-column-end: 3;
     display: flex;
@@ -378,8 +377,10 @@
 }
 
 .horizontal-scroll {
-    border-radius: 0 0 3px 0;
+    /* border-radius: 0 0 3px 0; */
+    cursor: grab;
     width: 294px;
+    height: 20px;
     overflow-x: scroll;
     white-space:nowrap;
 }
@@ -393,7 +394,7 @@
     justify-content: center;
     align-items: center;
     margin-right: 3px;
-    width: 60px;
+    padding: 0 15px;
     height: 20px;
     border-radius: 10px;
     background: #FFF;

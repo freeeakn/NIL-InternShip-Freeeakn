@@ -41,7 +41,7 @@ const filterArray = (arr, params) => {
     } else {
         return arr;
     }
-}
+};
 
 const fromTofilterArray = (arr, from, to) => {
     if (from || to) {
@@ -56,7 +56,7 @@ const fromTofilterArray = (arr, from, to) => {
     } else {
         return arr;
     }
-}
+};
 
 
 app.get('/', async (req, res) => {
@@ -106,14 +106,17 @@ app.post('/', async (req, res) => {
     const {data} = await googleSheets.spreadsheets.values.get({
         auth,
         spreadsheetId,
-        range: 'Лист1',
+        range: 'Каталог',
     });
     
-    // data.values.forEach(item => {
-    //     item[5] = item[5].split('/')[5];
-    // })
+    for (let i = 0; i < data.values.length; i++) {
+        for (let j = 0; j < data.values[i].length; j++) {
+            if (!Number.isInteger(data.values[i][j]))
+                data.values[i][j] = data.values[i][j].toLowerCase();
+        }
+    }
     
-    const filteredArray = filterArray(data.values, textFind);
+    const filteredArray = filterArray(data.values, textFind.toLowerCase());
 
     res.render('index', {data: filteredArray});
 });
@@ -163,9 +166,9 @@ app.get('/filter', async (req, res) => {
     data.values.splice(0, 2);
 
     data.values.forEach((value) => {
-        taste.push(value[3]);
-        type.push(value[2]);
-        power.push(value[6]);
+        value[3] !== '' ? taste.push(value[3]) : null;
+        value[2] !== '' ? type.push(value[2]) : null;
+        value[6] !== '' ? power.push(value[6]) : null;
     });
 
     res.render('Filter', {type: new Set(type), power: new Set(power), taste: new Set(taste)});
