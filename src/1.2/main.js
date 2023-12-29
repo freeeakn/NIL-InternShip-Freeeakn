@@ -67,10 +67,10 @@ app.get('/', async (req, res) => {
         range: 'Каталог',
     });
     
-    // for(let i = 0 ; i < data.values.length; i++) {
-    //     let temp = data.values[i][5].split('/')[5];
-    //     data.values[i][5] = temp;
-    // }
+    for(let i = 0 ; i < data.values.length; i++) {
+        data.values[i][14] = data.values[i][14].split('/')[5];;
+    }
+
     data.values.splice(0, 2);
 
     const filter = req.query.filter;
@@ -111,8 +111,7 @@ app.post('/', async (req, res) => {
     
     for (let i = 0; i < data.values.length; i++) {
         for (let j = 0; j < data.values[i].length; j++) {
-            if (!Number.isInteger(data.values[i][j]))
-                data.values[i][j] = data.values[i][j].toLowerCase();
+            !Number.isInteger(data.values[i][j]) ? data.values[i][j] = data.values[i][j].toLowerCase() : null;
         }
     }
     
@@ -212,6 +211,6 @@ const uploadFile = async (fileObject) => {
     return `https://drive.google.com/file/d/${data.id}/view?usp=sharing`;
 };
 
-app.listen(5173, (req, res) => {
+app.listen(5000, (req, res) => {
     console.log('start server on port 5173');
 });
