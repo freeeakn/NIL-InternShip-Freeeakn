@@ -66,9 +66,10 @@ app.get('/', async (req, res) => {
         spreadsheetId,
         range: 'Каталог',
     });
-    
-    for(let i = 0 ; i < data.values.length; i++) {
-        data.values[i][14] = data.values[i][14].split('/')[5];;
+
+    for(let i = 2 ; i < data.values.length; i++) {
+        if (data.values[i][14])
+            data.values[i][14] = data.values[i][14].split('/')[5];
     }
 
     data.values.splice(0, 2);
@@ -211,6 +212,6 @@ const uploadFile = async (fileObject) => {
     return `https://drive.google.com/file/d/${data.id}/view?usp=sharing`;
 };
 
-app.listen(5000, (req, res) => {
+app.listen(5173, (req, res) => {
     console.log('start server on port 5173');
 });
