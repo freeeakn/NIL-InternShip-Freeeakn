@@ -36,7 +36,13 @@ app.set('view engine', 'ejs')
 const filterArray = (arr, params) => {
     if (params != '') {
         return arr.filter(function(subArr) {
-            return subArr.includes(params);
+            let result = false;
+            for (let i = 0; i < subArr.length; i++) {
+                if (!Number.isInteger(subArr[i]))
+                    subArr[i].toLowerCase() == params.toLowerCase() ? 
+                    result = true : null;
+            }
+            return result;
         });
     } else {
         return arr;
@@ -109,14 +115,23 @@ app.post('/', async (req, res) => {
         spreadsheetId,
         range: 'Каталог',
     });
-    
-    for (let i = 0; i < data.values.length; i++) {
-        for (let j = 0; j < data.values[i].length; j++) {
-            !Number.isInteger(data.values[i][j]) ? data.values[i][j] = data.values[i][j].toLowerCase() : null;
+
+    for(let i = 2 ; i < data.values.length; i++) {
+        if (data.values[i][14]) {
+            // console.log(data.values[i][14]);
+            data.values[i][14] = data.values[i][14].split('/')[5];
         }
     }
+
+    data.values.splice(0, 2);
     
-    const filteredArray = filterArray(data.values, textFind.toLowerCase());
+    // for (let i = 0; i < data.values.length; i++) {
+    //     for (let j = 0; j < data.values[i].length; j++) {
+    //         !Number.isInteger(data.values[i][j]) ? data.values[i][j] = data.values[i][j].toLowerCase() : null;
+    //     }
+    // }
+
+    const filteredArray = filterArray(data.values, textFind);
 
     res.render('index', {data: filteredArray});
 });
