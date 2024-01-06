@@ -196,6 +196,7 @@ app.get('/item', async (req, res) => {
     const power = req.query.power;
     const price = req.query.price;
     const img = req.query.img;
+    const taste = req.query.taste;
 
     res.render('Item', {
         name: name,
@@ -203,6 +204,7 @@ app.get('/item', async (req, res) => {
         power: power,
         price: price,
         img: img,
+        taste: taste,
     });
 });
 
