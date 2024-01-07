@@ -38,7 +38,7 @@ const filterArray = (arr, params) => {
         return arr.filter(function(subArr) {
             let result = false;
             for (let i = 0; i < subArr.length; i++) {
-                if (!Number.isInteger(subArr[i]))
+                if (!Number.isInteger(subArr[i]) && subArr[i])
                     subArr[i].toLowerCase() == params.toLowerCase() ? 
                     result = true : null;
             }
