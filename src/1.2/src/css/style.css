@@ -62,7 +62,7 @@
         border: 0.3px solid #000;
         background: #FFF;
         width: 100%;
-        margin-right: 20px;
+        margin-right: 30px;
         height: 20px;
         display: flex;
         align-items: center;
@@ -105,7 +105,8 @@
     margin-left: 10px;
 }
 
-.line__icon {
+.line__icon,
+.smart-basket__min-icon {
     cursor: pointer;
     width: 25px;
     height: 24px;
@@ -155,22 +156,28 @@
 }
 
 .main-grid__item-bottom {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 4px;
-    height: 63px;
     width: 132.349px;
+    min-height: 90px;
     padding-top: 12px;
     margin-bottom: 8px;
 }
 
 .main-grid__item__price {
+    display: flex;
+    justify-content: space-between;
     font-size: 12px;
     font-weight: 400;
     line-height: normal;
 }
 
 .main-grid__item__name {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
     font-size: 8px;
     font-weight: 400;
     line-height: normal;
@@ -178,7 +185,9 @@
 
 .main-grid__item__btn {
     cursor: pointer;
-    width: 100%;
+    position: absolute;
+    bottom: 0;
+    width: inherit;
     height: 21.875px;
     display: flex;
     justify-content: center;
@@ -784,10 +793,16 @@
 
 .smart-basket__close-form {
     background: #3598dc;
+    color: #FFF;
+    font-size: 12px;
+    font-weight: 600;
 }
 
 .smart-basket__send-form {
     background: #007D34;
+    color: #FFF;
+    font-size: 12px;
+    font-weight: 600;
 }
 
 a.smart-basket__link-agreement {

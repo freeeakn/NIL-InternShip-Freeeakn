@@ -31,7 +31,7 @@ const googleDrive = google.drive({
 const app = express();
 app.set('view engine', 'ejs')
     .use(express.urlencoded({ extended: true }))
-    .use(express.static(__dirname + '/views'));
+    .use(express.static(__dirname));
 
 const filterArray = (arr, params) => {
     if (params != '') {
@@ -86,6 +86,7 @@ app.get('/', async (req, res) => {
     const sort = req.query.sort;
 
     let filteredArray = data.values;
+    
     if (filter) {
         const arr = filter.split(',');
         filteredArray = [];
@@ -103,7 +104,7 @@ app.get('/', async (req, res) => {
     else if (sort == 'false')
         filteredArray = filteredArray.sort((item1, item2) => item1[9] > item2[9] ? 1 : -1);
 
-    res.render('index', {data: filteredArray});
+    res.render('../index.ejs', {data: filteredArray});
 });
 
 app.post('/', async (req, res) => {
@@ -133,11 +134,11 @@ app.post('/', async (req, res) => {
 
     const filteredArray = filterArray(data.values, textFind);
 
-    res.render('index', {data: filteredArray});
+    res.render('../index', {data: filteredArray});
 });
 
 app.get('/create_item', (req, res) => {
-    res.render('createItem');
+    res.render('../createItem');
 });
 
 app.post('/create_item', upload.any(), async (req, res) => {
@@ -186,7 +187,7 @@ app.get('/filter', async (req, res) => {
         value[6] !== '' ? power.push(value[6]) : null;
     });
 
-    res.render('Filter', {type: new Set(type), power: new Set(power), taste: new Set(taste)});
+    res.render('../Filter', {type: new Set(type), power: new Set(power), taste: new Set(taste)});
 });
 
 app.get('/item', async (req, res) => {
@@ -198,7 +199,7 @@ app.get('/item', async (req, res) => {
     const img = req.query.img;
     const taste = req.query.taste;
 
-    res.render('Item', {
+    res.render('../Item', {
         name: name,
         model: model,
         power: power,

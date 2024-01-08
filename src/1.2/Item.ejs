@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Товар</title>
+    <title><%= name %></title>
     <link rel="stylesheet" href="smartbasket/css/smartbasket.min.css">
     <link rel="stylesheet" href="src/css/style.css">
 </head>
@@ -19,7 +19,12 @@
 
     <div
         class="item-image">
+        <% if (img != "undefined") { %>
         <img src="http://drive.google.com/uc?export=view&id=<%= img %>" alt="ItemPhoto">
+        <% } %>
+        <% if (img == "undefined") { %>
+        <img src="src/img/noPhoto.jpeg" alt="noPhoto">
+        <% } %>
     </div>
 
     <div
