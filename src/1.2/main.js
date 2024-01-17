@@ -74,8 +74,10 @@ app.get('/', async (req, res) => {
     });
 
     for(let i = 2 ; i < data.values.length; i++) {
-        if (data.values[i][14])
+        if (data.values[i][14]) {
+            // console.log(data.values[i][14]);
             data.values[i][14] = data.values[i][14].split('/')[5];
+        }
     }
 
     data.values.splice(0, 2);

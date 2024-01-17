@@ -63,7 +63,7 @@
                     href="<%= `http://localhost:5173/item?name=${el[0]}&model=${el[2]}&taste=${el[3]}&power=${el[6]}&price=${el[9]}&img=${el[14]}` %>"
                     class="main-grid__item__image">
                     <% if (el[14]) { %>
-                    <img src="http://drive.google.com/uc?export=view&id=<%= el[14] %>" alt="item-picture">
+                    <img src="http://drive.google.com/thumbnail?export=view&id=<%= el[14] %>" alt="item-picture">
                     <% } %>
                     <% if (!el[14]) { %>
                     <img src="src/img/noPhoto.jpeg" alt="noPhoto">
