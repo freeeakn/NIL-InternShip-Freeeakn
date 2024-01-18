@@ -78,7 +78,12 @@
                 data-sb-product-name="<%= name %>"
                 data-sb-product-price="<%=price%>"
                 data-sb-product-quantity="1"
-                data-sb-product-img="http://drive.google.com/uc?export=view&id=<%= img %>">Купить</button>
+                <% if (el[14]) { %>
+                data-sb-product-img="http://drive.google.com/thumbnail?export=view&id=<%= img %>">Купить</div>
+                <% } %>
+                <% if (!el[14]) { %>
+                data-sb-product-img="src/img/noPhoto.jpeg">Купить</div>
+                <% } %>
             </div>
         </div>
     </div>
