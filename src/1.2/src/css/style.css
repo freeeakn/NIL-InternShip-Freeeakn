@@ -217,18 +217,19 @@
     font-weight: 700;
 }
 
-.item-header span {
+.item-header svg {
     cursor: pointer;
-    font-size: 1rem;
-    font-weight: 400;
+    width: 35px;
+    /* font-size: 1rem;
+    font-weight: 400; */
     position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     left: 10px;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
     padding: 5px;
     background: #FFF;
-    border-radius: 10px;
+    border-radius: 35px;
 }
 
 .item-image {
