@@ -4,6 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Главная</title>
+    <script>
+        window.addEventListener('beforeunload', saveScrollPosition);
+
+        function saveScrollPosition() {
+        localStorage.setItem('scrollPosition', window.scrollY);
+        }
+
+        window.addEventListener('load', restoreScrollPosition);
+
+        function restoreScrollPosition() {
+            const scrollPosition = localStorage.getItem('scrollPosition');
+            if (scrollPosition) {
+                window.scrollTo(0, scrollPosition);
+            }
+        }
+
+        window.onload = restoreScrollPosition;
+    </script>
     <link rel="stylesheet" href="smartbasket/css/smartbasket.min.css">
     <link rel="stylesheet" href="src/css/style.css">
 </head>
@@ -128,5 +146,18 @@
 			});
 		});
 	</script>
+
+    <!-- <script>
+        window.onscroll = () => {
+            localStorage.setItem('cord', window.pageYOffset);
+        };
+
+        window.addEventListener('load', e => {
+            if (localStorage[cord]) {
+                window.scrollY(localStorage[cord]);
+                localStorage.removeItem(cord);
+            }
+        });
+    </script> -->
 </body>
 </html>
