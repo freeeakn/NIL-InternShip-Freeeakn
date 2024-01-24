@@ -63,7 +63,7 @@
         background: #FFF;
         width: 100%;
         margin-right: 30px;
-        height: 20px;
+        height: 30px;
         display: flex;
         align-items: center;
         padding-left: 8px;
@@ -93,7 +93,7 @@
     .line__search__input {
         width: 100%;
         border-radius: 0 30px 30px 0;
-        font-size: 7px;
+        font-size: 12px;
         font-weight: 400;
         line-height: 10px;
     }
@@ -170,7 +170,7 @@
     display: flex;
     justify-content: space-between;
     font-size: 12px;
-    font-weight: 400;
+    font-weight: 600;
     line-height: normal;
 }
 
@@ -179,7 +179,7 @@
     flex-direction: column;
     gap: 4px;
     font-size: 10px;
-    font-weight: 400;
+    font-weight: 600;
     line-height: normal;
 }
 
